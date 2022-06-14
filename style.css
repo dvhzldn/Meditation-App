@@ -22,11 +22,9 @@
   justify-content: space-evenly;
   flex-direction: column;
   align-items: center;
-
 }
 
 .play {
-  transform: scale(0.3);
   height: auto;
 }
 

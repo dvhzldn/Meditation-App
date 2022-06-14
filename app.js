@@ -4,22 +4,19 @@ const song = document.querySelector('.song');
 const play = document.querySelector('.play');
 const outline = document.querySelector('.moving-outline circle')
 const video = document.querySelector('.vid-container video')
-
-//Sounds
 const sounds = document.querySelectorAll('.sound-picker button');
-//Time display
 const timeDisplay = document.querySelector('.time-display');
 const timeSelect = document.querySelectorAll('.time-select button');
-// Get length of outline
-const outlineLength = outline.getTotalLength();
-// Duration
-let fakeDuration = 600;
 
+// Get length of circle outline
+const outlineLength = outline.getTotalLength();
+// Set a starting duration
+let fakeDuration = 600;
 outline.style.strokeDasharray = outlineLength;
 outline.style.strokeDashoffset = outlineLength;
 
 
-// Sound section
+// Playing the correct sound and video when user clicks on Sun or Sky icons
 sounds.forEach(function (sound) {
     sound.addEventListener('click', function(){
         song.src = this.getAttribute('data-sound')
@@ -28,7 +25,7 @@ sounds.forEach(function (sound) {
     })
 })
 
-// Play sound
+// Playing sound when user clicks on play image
     play.addEventListener('click', function () {
         checkPlaying(song);
     });
@@ -54,15 +51,12 @@ sounds.forEach(function (sound) {
             song.play();
             video.play();
             play.src = './svg/pause.svg';
-            console.log("play")        
-           
-        
-        }
+            console.log("play")}
         else {
             song.pause();
             video.pause();
             play.src = './svg/play.svg'
-            console.log("pause")        }
+            console.log("pause")}
     }
 
 //Playback circle animation
@@ -75,25 +69,21 @@ sounds.forEach(function (sound) {
 
     //Animate circle
     let progress = outlineLength - (currentTime / fakeDuration) * outlineLength;
-    outline.style.strokeDashoffset = progress;
+        outline.style.strokeDashoffset = progress;
     // Animate the text
     if (textMinutes <=1 ) {
         timeDisplay.textContent = `${textMinutes} minute`
-        console.log(`${minutes} + {seconds}`)
-    } else
-    timeDisplay.textContent = `${textMinutes} minutes`
-    console.log(`${minutes}:${seconds}`)
+        console.log(`${minutes} + {seconds}`)}
+    else
+        timeDisplay.textContent = `${textMinutes} minutes`
+        console.log(`${minutes}:${seconds}`)
     
     if(currentTime >= fakeDuration) {
         song.pause();
         song.currentTime = 0;
         play.src = './svg/play.svg';
-        video.pause();
-    }    
+        video.pause();}    
+    }
 }
-
-
-}
-
 
 app();
