@@ -26,8 +26,8 @@
 }
 
 .play {
-  height: 10%;
-  transform: scale(0.6);
+  transform: scale(0.3);
+  height: auto;
 }
 
 .player-container {
